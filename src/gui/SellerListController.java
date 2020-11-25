@@ -30,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mode.services.DepartmentService;
 import mode.services.SellerService;
 import model.entities.Seller;
 
@@ -112,8 +113,9 @@ public class SellerListController implements Initializable, DataChangeListener {
 			Pane pane = loader.load();
 			
 			SellerFormController controller = loader.getController();
-			controller.setDeparment(obj);
-			controller.setDeparmentService(new SellerService());
+			controller.setSeller(obj);
+			controller.setServices(new SellerService(), new DepartmentService());
+			controller.loadAssociateObjects();
 			controller.subscribeDataChangeListener(this);
 			controller.updateFormData();
 			
